@@ -5,8 +5,13 @@ services:
     build: weather-api/
     depends_on:
       - 'database'
+    environment:
+      POSTGRES_USER: weather
+      POSTGRES_PASSWORD: myDGhrrBLRq5kKg7c
+      DOCKERIZED: 1
+      POSTGRES_DB: weather
     volumes:
-      - './ecommerce-api:/src/app'
+      - './weather-api:/src/app'
       - '/src/app/node_modules'
 
     ports: 
@@ -18,7 +23,7 @@ services:
       - 'database'
       - 'api'
     volumes:
-      - './ecommerce-client:/web'
+      - './weather-client:/web'
       - '/web/node_modules'
     ports:
       - '3000:3000'
@@ -29,5 +34,6 @@ services:
     restart: always
     environment:
       POSTGRES_USER: weather
-      POSTGRES_PASSWORD: !paXjEt@!&32&M53RcgzqzMavmY8p2*oTSHYs$u5mZjMG7HcoC6$46Gb3$WiEg5BQ@8AWJETij4gaYLE*$*9ypMcBN*w%HUX%c93b2$^pnpuLSnH9X!8LH!XyJxDVT#q
+      POSTGRES_PASSWORD: myDGhrrBLRq5kKg7c
+      POSTGRES_DB: weather
       

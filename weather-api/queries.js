@@ -1,9 +1,21 @@
 const Pool = require('pg').Pool
+let password
+let user
+if (process.env.DOCKERIZED) {
+  password = process.env.POSTGRES_PASSWORD
+  user = process.env.POSTGRES_USER
+} else {
+  password = 'password'
+  user = 'weather'
+}
+let database = user
+
+
 const pool = new Pool({
-  user: 'weather',
-  host: 'localhost',
-  database: 'weather',
-  password: 'password',
+  user: user,
+  host: 'database',
+  database: database,
+  password: password,
   port: 5432,
 })
 

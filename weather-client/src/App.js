@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css'
 import WeatherBox from './weatherbox'
 import RouteSelector from './routeSelector'
 import DateSelector from './dateSelector'
@@ -76,12 +76,19 @@ class App extends React.Component {
     }
     
     return (
-      <div>
-        <RouteSelector handleRouteChange={this.handleRouteChange} routes={this.state.routes}/>
-        <DateSelector handleDateChange={this.handleDateChange} stops={stops} initial={this.state.startDate} />
-        <UnitConverter handleTempChange={this.handleTempChange} handleDistChange={this.handleDistChange} />
-        {this.state.dates.map((date, index) => <WeatherBox key={index} location_id={this.state.stops[index]} fahrenheit={this.state.fahrenheit} feet={this.state.feet} startDate={this.state.startDate} date={date}/>)}
-        
+      <div className="container">
+        <div className="col-md-12">
+          <div>
+          <RouteSelector handleRouteChange={this.handleRouteChange} routes={this.state.routes}/>
+          </div>
+          <div>
+          <DateSelector handleDateChange={this.handleDateChange} stops={stops} initial={this.state.startDate} />
+          </div>
+          <div>
+          <UnitConverter handleTempChange={this.handleTempChange} handleDistChange={this.handleDistChange} />
+          </div>
+          {this.state.dates.map((date, index) => <WeatherBox key={index} location_id={this.state.stops[index]} fahrenheit={this.state.fahrenheit} feet={this.state.feet} startDate={this.state.startDate} date={date}/>)}
+        </div>
       </div>
     )
   }

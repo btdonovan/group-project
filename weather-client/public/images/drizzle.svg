@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="640" height="480" version="1.1" viewBox="0 0 169.33 127" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:osb="http://www.openswatchbook.org/uri/2009/osb" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <defs>
+  <linearGradient id="linearGradient3265" x1="15.198" x2="162.16" y1="113.43" y2="26.833" gradientUnits="userSpaceOnUse">
+   <stop stop-color="#b1cde0" offset="0"/>
+   <stop stop-color="#b1cde0" stop-opacity="0" offset="1"/>
+  </linearGradient>
+ </defs>
+ <metadata>
+  <rdf:RDF>
+   <cc:Work rdf:about="">
+    <dc:format>image/svg+xml</dc:format>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:title/>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <g>
+  <rect x=".0066249" y="-.094135" width="169.32" height="127.19" fill="url(#linearGradient3265)" stroke-miterlimit="2" stroke-width=".25559" style="mix-blend-mode:normal"/>
+  <g transform="translate(-145.03 -21.806)" fill="#50565f">
+   <rect transform="matrix(.9532 .30234 -.55803 .82982 0 0)" x="250.17" y="37.845" width="1.1354" height="23.639"/>
+   <rect transform="matrix(.9532 .30234 -.55803 .82982 0 0)" x="256.12" y="33.766" width="1.1354" height="23.639"/>
+   <rect transform="matrix(.9532 .30234 -.55803 .82982 0 0)" x="262.08" y="33.507" width="1.1354" height="23.639"/>
+   <rect transform="matrix(.9532 .30234 -.55803 .82982 0 0)" x="268.03" y="29.427" width="1.1354" height="23.639"/>
+   <rect transform="matrix(.9532 .30234 -.55803 .82982 0 0)" x="273.99" y="29.168" width="1.1354" height="23.639"/>
+   <rect transform="matrix(.9532 .30234 -.55803 .82982 0 0)" x="279.93" y="25.089" width="1.1354" height="23.639"/>
+  </g>
+  <path d="m92.396 22.677a26.366 26.178 0 0 0-22.312 12.294 15.137 16.513 0 0 0-5.1179-0.97322 15.137 16.513 0 0 0-14.922 13.74 15.137 16.513 0 0 0-14.387 16.493 15.137 16.513 0 0 0 15.137 16.513 15.137 16.513 0 0 0 0.74525-0.0204v0.0204h67.372v-2e-3a15.137 16.513 0 0 0 14.889-16.51 15.137 16.513 0 0 0-15.025-16.513 26.366 26.178 0 0 0-26.339-25.042 26.366 26.178 0 0 0-0.0409 0z" fill="#e6e6e6" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="2" stroke-width=".46557"/>
+ </g>
+</svg>

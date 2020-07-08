@@ -1,4 +1,5 @@
 import React from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css';
 import moment from 'moment-timezone';
 
@@ -111,25 +112,45 @@ class WeatherBox extends React.PureComponent {
       moonset = moment(new Date(Date.parse(moonset))).tz(timezone)
       moonset = moonset.format('h:mm A z')
     }
+
+    let graphic
+    if (this.state.forecast.precip >= 80) {
+      graphic = 'rainy.svg'
+    } else if (this.state.forecast.precip >= 50) {
+      graphic = 'drizzle.svg'
+    } else if (this.state.forecast.cloud_cover >= 80) {
+      graphic = 'cloudy.svg'
+    } else if (this.state.forecast.cloud_cover >= 60) {
+      graphic = 'mostly_cloudy.svg'
+    } else if (this.state.forecast.cloud_cover >= 30) {
+      graphic = 'partly_cloudy.svg'
+    } else {
+      graphic = 'sunny.svg'
+    }
     
     if (this.props.startDate) {
       return (
-        <div>
-          <div>{this.state.forecast.name}</div>
-          <div>{date}</div>
-          <div>{altitude} {units}</div>
-          <div>Lat: {this.state.forecast.lat} Lon: {this.state.forecast.lon}</div>
-          <div>{this.state.forecast.description}</div>
-          <div>High: {high}{degrees}</div>
-          <div>Low: {low}{degrees}</div>
-          <div>Chance of Rain: {this.state.forecast.precip}%</div>
-          <div>Cloud Cover: {this.state.forecast.cloud_cover}%</div>
-          <div>Sunrise: {sunrise}</div>
-          <div>Sunset: {sunset}</div>
-          <div>Moonrise: {moonrise}</div>
-          <div>Moonset: {moonset}</div>
-          <div>Visibility: {this.state.forecast.visibility}</div>
-          <img src={'/images/' + moon + '.png'} alt={moon + ' phase'} width="25px" />
+        <div className="card mb-4 shadow">
+          <div className="card-header text-white bg-dark">{date} - {this.state.forecast.name}</div>
+          <div>
+            <div className="img-overlay-container">
+              <img src={`/images/${graphic}`} alt={graphic} width="100%"/>
+              <div className="card-img-overlay card-body text-white bg-dark">
+                <div className="card-text">Altitude: {altitude} {units}</div>
+                <div className="card-text">Lat: {this.state.forecast.lat} Lon: {this.state.forecast.lon}</div>
+                <div className="card-text">{this.state.forecast.description}</div>
+                <div className="card-text">Cloud Cover: {this.state.forecast.cloud_cover}%</div>
+                <div className="card-text">Chance of Rain: {this.state.forecast.precip}%</div>
+                <div className="card-text">Sunrise: {sunrise}</div>
+                <div className="card-text">Sunset: {sunset}</div>
+                <div className="card-text">Moonrise: {moonrise}</div>
+                <div className="card-text">Moonset: {moonset}</div>
+              </div>
+            </div>
+          </div>
+          {/* <div>Visibility: {this.state.forecast.visibility}</div> */}
+          <div className="card-footer text-white bg-dark">High: {high}{degrees} - Low: {low}{degrees} <img className="float-right" src={'/images/' + moon + '.png'} alt={moon + ' phase'} width="30px" /></div>
+          
         </div>
       )
     } else {

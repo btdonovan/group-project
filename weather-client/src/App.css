@@ -1,26 +1,16 @@
-body {
-  background-color: lightgray;
-  color: black;
-  margin: 10px;
+.card-img-overlay {
+  /* position: absolute; */
+  /* top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0; */
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: .5s ease;
+  background-color: #252525;
 }
 
-.grid-container {
-  display: inline-grid;
-  grid-template-columns: auto auto;
-  grid-auto-columns: min-content;
-  grid-column-gap: 10px;
-  grid-row-gap: 10px;
-}
-
-.message-grid {
-  grid-template-columns: auto auto;
-}
-
-.grid-item-r {
-  padding-left: 1em;
-  text-align: right;
-}
-
-.grid-item {
-  padding-left: 1em;
+.img-overlay-container:hover .card-img-overlay {
+  opacity: 1;
 }
