@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+  api:
+    build: weather-api/
+    depends_on:
+      - 'database'
+    volumes:
+      - './ecommerce-api:/src/app'
+      - '/src/app/node_modules'
+
+    ports: 
+      - '3001:3001'
+
+  client:
+    build: weather-client/
+    depends_on:
+      - 'database'
+      - 'api'
+    volumes:
+      - './ecommerce-client:/web'
+      - '/web/node_modules'
+    ports:
+      - '3000:3000'
+    stdin_open: true
+
+  database:
+    build: database/
+    restart: always
+    environment:
+      POSTGRES_USER: weather
+      POSTGRES_PASSWORD: !paXjEt@!&32&M53RcgzqzMavmY8p2*oTSHYs$u5mZjMG7HcoC6$46Gb3$WiEg5BQ@8AWJETij4gaYLE*$*9ypMcBN*w%HUX%c93b2$^pnpuLSnH9X!8LH!XyJxDVT#q
+      
