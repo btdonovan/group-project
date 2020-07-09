@@ -35,7 +35,7 @@ const readRow = (request, response, tableName) => {
         throw error
       }
       response.status(200).json(results.rows)
-      pool.end()
+      // pool.end()
     })
 }
 
@@ -50,7 +50,7 @@ const deleteRow = (request, response, tableName) => {
         throw error
       }
       response.status(200).send(`successfully deleted ${request.params.id}`)
-      pool.end()
+      // pool.end()
     }
   )
 }
@@ -64,7 +64,7 @@ const listRows = (request, response, tableName) => {
         throw error
       }
       response.status(200).json(results.rows)
-      pool.end()
+      // pool.end()
     }
   )
 }
@@ -93,7 +93,7 @@ const createForecast = (request, response) => {
       } else {
         response.status(201).send(`forecast added for ${date} at location ${location_id}.`)
       }
-      pool.end()
+      // pool.end()
     }
   )
 }
@@ -134,7 +134,7 @@ const updateForecast = (request, response) => {
             } else {
               response.send(`updated forecast ${id}`)
             }
-            pool.end()
+            // pool.end()
           } 
         )
       }
@@ -161,7 +161,7 @@ const createLocation = (request, response) => {
       } else {
         response.status(201).send(`Location ${name} added.`)
       }
-      pool.end()
+      // pool.end()
     }
   )
 }
@@ -195,7 +195,7 @@ const updateLocation = (request, response) => {
             } else {
               response.send(`updated location ${id}`)
             }
-            pool.end()
+            // pool.end()
           }
         )
       }
@@ -225,7 +225,7 @@ const createRoute = (request, response) => {
       } else {
         response.status(201).send(`${name} with ${stops} stops added.`)
       }
-      pool.end()
+      // pool.end()
     }
   )
 }
@@ -261,7 +261,7 @@ const updateRoute = (request, response) => {
             } else {
               response.send(`updated route ${id}`)
             }
-            pool.end()
+            // pool.end()
           }
         )
       }
@@ -288,7 +288,7 @@ const createMoon = (request, response) => {
       } else {
         response.status(201).send(`Moon phase added for ${date}.`)
       }
-      pool.end()
+      // pool.end()
     }
   )
 }
@@ -321,7 +321,7 @@ const updateMoon = (request, response) => {
             } else {
               response.send(`updated moon phase for ${date}`)
             }
-            pool.end()
+            // pool.end()
           }
         )
       }
@@ -351,7 +351,7 @@ const joinLocationDate = (request, response) => {
       } else {
         response.status(200).json(results.rows[0])
       }
-      pool.end()
+      // pool.end()
     }
   )
 }

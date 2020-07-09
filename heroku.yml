@@ -1,13 +1,12 @@
-# setup:
-#   - "null"
-#   # addons:
-#   # - plan: heroku-postgresql:hobby-dev
-#   #   as: DATABASE
+setup:
+  addons:
+  - plan: heroku-postgresql:hobby-dev
+    as: DATABASE
 
 build:
   docker:
-    web: weather-client/Dockerfile
-    # api: weather-api/Dockerfile
+    # web: weather-client/Dockerfile
+    api: weather-api/Dockerfile
 
 run:
   web: npm start
