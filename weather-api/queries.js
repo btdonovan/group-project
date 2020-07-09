@@ -1,27 +1,32 @@
-const Pool = require('pg').Pool
+const { Pool } = require('pg')
 let password
-let user
-if (process.env.DOCKERIZED) {
-  password = process.env.POSTGRES_PASSWORD
-  user = process.env.POSTGRES_USER
-} else {
-  password = 'password'
-  user = 'weather'
-}
-let database = user
+// let user
+// if (process.env.DOCKERIZED) {
+//   password = process.env.POSTGRES_PASSWORD
+//   user = process.env.POSTGRES_USER
+// } else {
+//   password = 'password'
+//   user = 'weather'
+// }
+// let database = user
 
 
 const pool = new Pool({
-  user: user,
-  host: 'database',
-  database: database,
-  password: password,
-  port: 5432,
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false
+  }
+  // user: user,
+  // host: 'database',
+  // database: database,
+  // password: password,
+  // port: 5432,
 })
 
 // Generic read, delete, and list functions used for all tables
 
 const readRow = (request, response, tableName) => {
+  pool.connect()
   pool.query(
     `SELECT * FROM ${tableName} WHERE id = $1`, 
     [request.params.id],
@@ -30,10 +35,13 @@ const readRow = (request, response, tableName) => {
         throw error
       }
       response.status(200).json(results.rows)
+      pool.end()
     })
 }
 
+
 const deleteRow = (request, response, tableName) => {
+  pool.connect()
   pool.query(
     `DELETE FROM ${tableName} WHERE id = $1`,
     [request.params.id],
@@ -42,11 +50,13 @@ const deleteRow = (request, response, tableName) => {
         throw error
       }
       response.status(200).send(`successfully deleted ${request.params.id}`)
+      pool.end()
     }
   )
 }
 
 const listRows = (request, response, tableName) => {
+  pool.connect()
   pool.query (
     `SELECT * FROM ${tableName} ORDER BY id ASC`,
     (error, results) => {
@@ -54,6 +64,7 @@ const listRows = (request, response, tableName) => {
         throw error
       }
       response.status(200).json(results.rows)
+      pool.end()
     }
   )
 }
@@ -72,6 +83,7 @@ const createForecast = (request, response) => {
   let sunset = request.body.sunset
   let moonrise = request.body.moonrise
   let moonset = request.body.moonset
+  pool.connect()
   pool.query(
     'INSERT INTO forecasts (location_id, date, description, high_temp, low_temp, precip, cloud_cover, sunrise, sunset, moonrise, moonset) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)', 
     [location_id, date, description, high_temp, low_temp, precip, cloud_cover, sunrise, sunset, moonrise, moonset],
@@ -81,6 +93,7 @@ const createForecast = (request, response) => {
       } else {
         response.status(201).send(`forecast added for ${date} at location ${location_id}.`)
       }
+      pool.end()
     }
   )
 }
@@ -89,6 +102,7 @@ const createForecast = (request, response) => {
 
 const updateForecast = (request, response) => {
   var forecast
+  pool.connect()
   pool.query(
     'SELECT * FROM forecasts WHERE id = $1',
     [request.params.id],
@@ -120,6 +134,7 @@ const updateForecast = (request, response) => {
             } else {
               response.send(`updated forecast ${id}`)
             }
+            pool.end()
           } 
         )
       }
@@ -136,6 +151,7 @@ const createLocation = (request, response) => {
   let altitude = request.body.altitude
   let lat = request.body.lat
   let lon = request.body.lon
+  pool.connect()
   pool.query(
     `INSERT INTO locations (name, altitude, lat, lon) VALUES ($1, $2, $3, $4)`, 
     [name, altitude, lat, lon],
@@ -145,6 +161,7 @@ const createLocation = (request, response) => {
       } else {
         response.status(201).send(`Location ${name} added.`)
       }
+      pool.end()
     }
   )
 }
@@ -153,6 +170,7 @@ const createLocation = (request, response) => {
 
 const updateLocation = (request, response) => {
   let location
+  pool.connect()
   pool.query(
     `SELECT * FROM locations WHERE id = $1`,
     [request.params.id],
@@ -177,6 +195,7 @@ const updateLocation = (request, response) => {
             } else {
               response.send(`updated location ${id}`)
             }
+            pool.end()
           }
         )
       }
@@ -196,6 +215,7 @@ const createRoute = (request, response) => {
   let stop2 = request.body.stop2
   let stop3 = request.body.stop3
   let stop4 = request.body.stop4
+  pool.connect()
   pool.query(
     'INSERT INTO routes (name, stops, stop1, stop2, stop3, stop4) VALUES ($1, $2, $3, $4, $5, $6)', 
     [name, stops, stop1, stop2, stop3, stop4],
@@ -205,6 +225,7 @@ const createRoute = (request, response) => {
       } else {
         response.status(201).send(`${name} with ${stops} stops added.`)
       }
+      pool.end()
     }
   )
 }
@@ -213,6 +234,7 @@ const createRoute = (request, response) => {
 
 const updateRoute = (request, response) => {
   var route
+  pool.connect()
   pool.query(
     'SELECT * FROM routes WHERE id = $1',
     [request.params.id],
@@ -239,6 +261,7 @@ const updateRoute = (request, response) => {
             } else {
               response.send(`updated route ${id}`)
             }
+            pool.end()
           }
         )
       }
@@ -255,6 +278,7 @@ const createMoon = (request, response) => {
   let date = request.body.date
   let phase = request.body.phase
   let visibility = request.body.visibility
+  pool.connect()
   pool.query(
     `INSERT INTO moon (date, phase, visibility) VALUES ($1, $2, $3)`, 
     [date, phase, visibility],
@@ -264,6 +288,7 @@ const createMoon = (request, response) => {
       } else {
         response.status(201).send(`Moon phase added for ${date}.`)
       }
+      pool.end()
     }
   )
 }
@@ -272,6 +297,7 @@ const createMoon = (request, response) => {
 
 const updateMoon = (request, response) => {
   var moon
+  pool.connect()
   pool.query(
     'SELECT * FROM moon WHERE id = $1',
     [request.params.id],
@@ -295,6 +321,7 @@ const updateMoon = (request, response) => {
             } else {
               response.send(`updated moon phase for ${date}`)
             }
+            pool.end()
           }
         )
       }
@@ -314,6 +341,7 @@ const joinLocationDate = (request, response) => {
    moon.phase, moon.visibility FROM locations INNER JOIN forecasts ON\
    locations.id = forecasts.location_id INNER JOIN moon ON forecasts.date\
    = moon.date WHERE forecasts.date = $1 AND locations.id = $2"
+  pool.connect()
   pool.query(
     query,
     [date, location_id],
@@ -323,6 +351,7 @@ const joinLocationDate = (request, response) => {
       } else {
         response.status(200).json(results.rows[0])
       }
+      pool.end()
     }
   )
 }
