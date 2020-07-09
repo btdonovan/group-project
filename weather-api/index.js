@@ -3,7 +3,7 @@ const bodyParser = require('body-parser')
 const app = express()
 const cors = require('cors')
 
-const port = 3001
+const port = process.env.PORT || 3001
 const db = require('./queries')
 // var whitelist = ['http://localhost:3000', 'http://localhost:3001']
 // var corsOptions = {
