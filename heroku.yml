@@ -1,4 +1,5 @@
 setup:
+  - "null"
   # addons:
   # - plan: heroku-postgresql:hobby-dev
   #   as: DATABASE
