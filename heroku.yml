@@ -6,7 +6,7 @@ setup:
 build:
   docker:
     # web: weather-client/Dockerfile
-    api: weather-api/Dockerfile
+    web: weather-api/Dockerfile
 
 run:
   web: npm start
