@@ -14,7 +14,7 @@ COPY . /src/app
 RUN yarn install
 
 # What port will the container talk to the outside world with once created?
-EXPOSE 3001
+EXPOSE 81
 
 # How do you start your app?
-CMD [ "npm", "run", "startdev" ]
+CMD [ "npm", "start" ]

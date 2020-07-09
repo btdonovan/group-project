@@ -37,3 +37,6 @@ services:
       POSTGRES_PASSWORD: myDGhrrBLRq5kKg7c
       POSTGRES_DB: weather
       
+networks:
+  weather-network:
+    name: weather-network
