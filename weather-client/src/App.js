@@ -25,7 +25,7 @@ class App extends React.Component {
   }
 
   async fetchRoutes() {
-    await fetch(`https://yellowstone-weather.herokuapp.com:3001/routes`)
+    await fetch(`https://yellowstone-weather.herokuapp.com/routes`)
       .then((response) => response.json())
       .then((json) => {this.setState({routes: json})})
   }
