@@ -10,4 +10,4 @@ build:
 
 run:
   web: npm start
-  api: npm start
+  # api: npm start
