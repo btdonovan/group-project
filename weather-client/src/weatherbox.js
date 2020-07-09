@@ -9,7 +9,7 @@ class WeatherBox extends React.PureComponent {
   }
 
   async fetchForecast(location_id, date) {
-    await fetch(`http://localhost:3001/getForecast/${location_id}/${date}`)
+    await fetch(`https://yellowstone-weather.herokuapp.com:3001/getForecast/${location_id}/${date}`)
       .then((response) => response.json())
       .then((json) => {this.setState({forecast: json})})
   }
