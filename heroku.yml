@@ -1,8 +1,8 @@
-setup:
-  - "null"
-  # addons:
-  # - plan: heroku-postgresql:hobby-dev
-  #   as: DATABASE
+# setup:
+#   - "null"
+#   # addons:
+#   # - plan: heroku-postgresql:hobby-dev
+#   #   as: DATABASE
 
 build:
   docker:
